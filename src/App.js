@@ -10,10 +10,21 @@ class App extends Component {
 
   render() {
     const options = [
-      'one', 'two', 'three'
-    ];
-
-    const defaultOption = 'one';
+      { value: 'one', label: 'One', icon:'https://inapptics-console-avatars-e45pv.s3.amazonaws.com/9ae36100-1635-11e7-8b18-d11b7fbb6c81.jpg' },
+      { value: 'two', label: 'Two', icon:'https://inapptics-console-avatars-e45pv.s3.amazonaws.com/9ae36100-1635-11e7-8b18-d11b7fbb6c81.jpg' },
+      {
+       type: 'group', name: 'group1', items: [
+         { value: 'three', label: 'Three', icon:'https://inapptics-console-avatars-e45pv.s3.amazonaws.com/9ae36100-1635-11e7-8b18-d11b7fbb6c81.jpg' },
+         { value: 'four', label: 'Four', icon:'https://inapptics-console-avatars-e45pv.s3.amazonaws.com/9ae36100-1635-11e7-8b18-d11b7fbb6c81.jpg' }
+       ]
+      },
+      {
+       type: 'group', name: 'group2', items: [
+         { value: 'five', label: 'Five', icon:'https://inapptics-console-avatars-e45pv.s3.amazonaws.com/9ae36100-1635-11e7-8b18-d11b7fbb6c81.jpg' },
+         { value: 'six', label: 'Six', icon:'https://inapptics-console-avatars-e45pv.s3.amazonaws.com/9ae36100-1635-11e7-8b18-d11b7fbb6c81.jpg' }
+       ]
+      }
+    ]
 
     return (
       <div className="App">
@@ -25,7 +36,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
+        <Dropdown options={options} onChange={this._onSelect} placeholder="Select an option" />
       </div>
     );
   }
