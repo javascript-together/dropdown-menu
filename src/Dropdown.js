@@ -90,12 +90,8 @@ class Dropdown extends Component {
         className={optionClass}
         onMouseDown={this.setValue.bind(this, value, label, icon)}
         onClick={this.setValue.bind(this, value, label, icon)}>
-        {(() => {
-          if (option.icon) {
-            return <img src={option.icon} />
-          }
-        })()}
-        {label}
+        <span className={'icon'} style={{'backgroundImage': 'url(' + option.icon + ')'}}></span>
+        <p>{label}</p>
       </div>
     )
   }
@@ -103,8 +99,8 @@ class Dropdown extends Component {
   renderGroup(option) {
     return (
       <div className={`${this.props.baseClassName}-title`}>
-        <img src={'briefcase.png'} />
-        <span>{option.name}</span>
+        <img className={'icon'} src={'briefcase.png'} />
+        <span className={'label'}>{option.name}</span>
       </div>
     );
   }
@@ -116,12 +112,22 @@ class Dropdown extends Component {
         let _group = this.renderGroup(option)
         let _options = option.items.map((item) => this.renderOption(item))
 
-        return (
-          <div className={`${baseClassName}-group`} key={option.name}>
-            {_group}
-            {_options}
-          </div>
-        )
+        if (_options.length) {
+          return (
+            <div className={`${baseClassName}-group`} key={option.name}>
+              {_group}
+              {_options}
+            </div>
+          )
+        } else {
+          return (
+            <div className={`${baseClassName}-group`} key={option.name}>
+              {_group}
+              <div className={`${baseClassName}-static`}>No apps in this organization</div>
+            </div>
+          )
+        }
+        
       } else {
         return this.renderOption(option)
       }
